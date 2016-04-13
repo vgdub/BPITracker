@@ -17,9 +17,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+//        addTestData()
+//        
+//        let fetchRequest = NSFetchRequest(entityName: "BPI")
+//        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+//        fetchRequest.sortDescriptors = [sortDescriptor]
+//        
+//        do {
+//            if let results = try managedObjectContext.executeFetchRequest(fetchRequest) as? [NSManagedObject] {
+//                
+//                for result in results {
+//                    if let rate = result.valueForKey("rate") as? Float {
+//                        print(rate)
+//                    }
+//                }
+//            }
+//        } catch {
+//            print("Fetch Error")
+//        }
+        
         return true
     }
-
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -62,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("SingleViewCoreData.sqlite")
+        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("BPICoreData.sqlite")
         var failureReason = "There was an error creating or loading the application's saved data."
         do {
             try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)

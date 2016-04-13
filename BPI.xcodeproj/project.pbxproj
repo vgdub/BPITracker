@@ -8,13 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		C34AC1081CBCF9B100019EBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AC1071CBCF9B100019EBA /* AppDelegate.swift */; };
-		C34AC10A1CBCF9B100019EBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AC1091CBCF9B100019EBA /* ViewController.swift */; };
+		C34AC10A1CBCF9B100019EBA /* BPIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AC1091CBCF9B100019EBA /* BPIViewController.swift */; };
 		C34AC10D1CBCF9B100019EBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34AC10B1CBCF9B100019EBA /* Main.storyboard */; };
 		C34AC1101CBCF9B100019EBA /* BPI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C34AC10E1CBCF9B100019EBA /* BPI.xcdatamodeld */; };
 		C34AC1121CBCF9B100019EBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C34AC1111CBCF9B100019EBA /* Assets.xcassets */; };
 		C34AC1151CBCF9B100019EBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34AC1131CBCF9B100019EBA /* LaunchScreen.storyboard */; };
 		C34AC1201CBCF9B100019EBA /* BPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AC11F1CBCF9B100019EBA /* BPITests.swift */; };
 		C34AC12B1CBCF9B100019EBA /* BPIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AC12A1CBCF9B100019EBA /* BPIUITests.swift */; };
+		C34AC13A1CBCFE4D00019EBA /* BPI+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AC1381CBCFE4D00019EBA /* BPI+CoreDataProperties.swift */; };
+		C34AC13B1CBCFE4D00019EBA /* BPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AC1391CBCFE4D00019EBA /* BPI.swift */; };
+		C34AC13E1CBD043C00019EBA /* BPIDataAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AC13D1CBD043C00019EBA /* BPIDataAccessor.swift */; };
+		C34AC1411CBD1CAA00019EBA /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AC1401CBD1CAA00019EBA /* CoreDataHelper.swift */; };
+		C34AC1431CBD40A500019EBA /* BPIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AC1421CBD40A500019EBA /* BPIViewModel.swift */; };
+		C34AC1461CBD7C8D00019EBA /* BPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34AC1451CBD7C8D00019EBA /* BPIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +43,7 @@
 /* Begin PBXFileReference section */
 		C34AC1041CBCF9B100019EBA /* BPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C34AC1071CBCF9B100019EBA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C34AC1091CBCF9B100019EBA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C34AC1091CBCF9B100019EBA /* BPIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPIViewController.swift; sourceTree = "<group>"; };
 		C34AC10C1CBCF9B100019EBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C34AC10F1CBCF9B100019EBA /* BPI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BPI.xcdatamodel; sourceTree = "<group>"; };
 		C34AC1111CBCF9B100019EBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -49,6 +55,12 @@
 		C34AC1261CBCF9B100019EBA /* BPIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BPIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C34AC12A1CBCF9B100019EBA /* BPIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPIUITests.swift; sourceTree = "<group>"; };
 		C34AC12C1CBCF9B100019EBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C34AC1381CBCFE4D00019EBA /* BPI+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "BPI+CoreDataProperties.swift"; path = "Model/BPI+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C34AC1391CBCFE4D00019EBA /* BPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPI.swift; path = Model/BPI.swift; sourceTree = "<group>"; };
+		C34AC13D1CBD043C00019EBA /* BPIDataAccessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPIDataAccessor.swift; path = Helpers/BPIDataAccessor.swift; sourceTree = "<group>"; };
+		C34AC1401CBD1CAA00019EBA /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Helpers/CoreDataHelper.swift; sourceTree = "<group>"; };
+		C34AC1421CBD40A500019EBA /* BPIViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPIViewModel.swift; path = ViewModel/BPIViewModel.swift; sourceTree = "<group>"; };
+		C34AC1451CBD7C8D00019EBA /* BPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BPIManager.swift; path = Helpers/BPIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +111,16 @@
 		C34AC1061CBCF9B100019EBA /* BPI */ = {
 			isa = PBXGroup;
 			children = (
+				C34AC13C1CBCFE5A00019EBA /* Model */,
 				C34AC1071CBCF9B100019EBA /* AppDelegate.swift */,
-				C34AC1091CBCF9B100019EBA /* ViewController.swift */,
+				C34AC1091CBCF9B100019EBA /* BPIViewController.swift */,
 				C34AC10B1CBCF9B100019EBA /* Main.storyboard */,
 				C34AC1111CBCF9B100019EBA /* Assets.xcassets */,
 				C34AC1131CBCF9B100019EBA /* LaunchScreen.storyboard */,
 				C34AC1161CBCF9B100019EBA /* Info.plist */,
 				C34AC10E1CBCF9B100019EBA /* BPI.xcdatamodeld */,
+				C34AC13F1CBD044500019EBA /* Helpers */,
+				C34AC1441CBD40A900019EBA /* ViewModel */,
 			);
 			path = BPI;
 			sourceTree = "<group>";
@@ -126,6 +141,33 @@
 				C34AC12C1CBCF9B100019EBA /* Info.plist */,
 			);
 			path = BPIUITests;
+			sourceTree = "<group>";
+		};
+		C34AC13C1CBCFE5A00019EBA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C34AC1391CBCFE4D00019EBA /* BPI.swift */,
+				C34AC1381CBCFE4D00019EBA /* BPI+CoreDataProperties.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C34AC13F1CBD044500019EBA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C34AC13D1CBD043C00019EBA /* BPIDataAccessor.swift */,
+				C34AC1401CBD1CAA00019EBA /* CoreDataHelper.swift */,
+				C34AC1451CBD7C8D00019EBA /* BPIManager.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		C34AC1441CBD40A900019EBA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C34AC1421CBD40A500019EBA /* BPIViewModel.swift */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +238,7 @@
 				TargetAttributes = {
 					C34AC1031CBCF9B100019EBA = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = EHRZAE4SY3;
 					};
 					C34AC11A1CBCF9B100019EBA = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -259,8 +302,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C34AC13E1CBD043C00019EBA /* BPIDataAccessor.swift in Sources */,
+				C34AC13B1CBCFE4D00019EBA /* BPI.swift in Sources */,
 				C34AC1101CBCF9B100019EBA /* BPI.xcdatamodeld in Sources */,
-				C34AC10A1CBCF9B100019EBA /* ViewController.swift in Sources */,
+				C34AC1411CBD1CAA00019EBA /* CoreDataHelper.swift in Sources */,
+				C34AC1431CBD40A500019EBA /* BPIViewModel.swift in Sources */,
+				C34AC1461CBD7C8D00019EBA /* BPIManager.swift in Sources */,
+				C34AC13A1CBCFE4D00019EBA /* BPI+CoreDataProperties.swift in Sources */,
+				C34AC10A1CBCF9B100019EBA /* BPIViewController.swift in Sources */,
 				C34AC1081CBCF9B100019EBA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +450,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = BPI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgdub.BPI;
@@ -412,6 +462,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = BPI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vgdub.BPI;
