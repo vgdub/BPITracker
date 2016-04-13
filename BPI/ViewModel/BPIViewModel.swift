@@ -22,6 +22,13 @@ class CurrentBPIViewModel: CurrentBPIViewViewModel {
     var bpiDate: String?
     var moc:NSManagedObjectContext!
     
+    /** Init view model without pre-fetched BPI
+     
+     Sets defaults values
+     Checks for last saved BPI and sets values
+     Bigns updates of current days BPI data
+     
+     */
     init() {
         moc = CoreDataHelper.managedObjectContext()
         
@@ -42,6 +49,8 @@ class CurrentBPIViewModel: CurrentBPIViewViewModel {
         BPIDataAccessor().beginUpdateCurrentData()
     }
     
+    
+    /** Init view model with pre-fetched BPI */
     init(_ bpi: BPI) {
         
         self.bpiCode = bpi.code

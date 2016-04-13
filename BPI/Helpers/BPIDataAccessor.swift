@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 let CurrentBPIUpdateNotification = "CurrentBPIUpdateNotification"
 let HistoricalBPIUpdateNotification = "HistoricalBPIUpdateNotification"
@@ -22,12 +21,14 @@ class BPIDataAccessor : NSObject {
         
     }
     
+    /** 
+     Sets NSTimer to continuously call updateCurrentData: every 5s
+     Calls updateCurrentData: immediately to avoid waiting for first NSTimer call
+    */
     func beginUpdateCurrentData() {
-        // Set update frequency to 5s
         NSTimer.scheduledTimerWithTimeInterval(5.0, target: self,
             selector: "updateCurrentData", userInfo: nil, repeats: true)
         
-        // Update current BPI immediately
         updateCurrentData()
     }
     
@@ -60,8 +61,6 @@ class BPIDataAccessor : NSObject {
     }
     
     func saveCurrentBPI(currentBPI:Payload) {
-        // Should pass data here to class responsible for actually taking data and saving to core data
-        
         let date = NSDate() // Todays date
         
         let rateString = String(currentBPI["rate_float"]!)
@@ -108,7 +107,6 @@ class BPIDataAccessor : NSObject {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
-        // Should pass data here to class responsible for actually taking data and saving to core data
         for (dateString, rateString) in bpiHistory {
             
             let rate = String(rateString)

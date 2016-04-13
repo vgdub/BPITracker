@@ -10,16 +10,27 @@ import UIKit
 
 class BPIManager: NSObject {
     
+    /** 
+     Handles creating and updating of BPI
+     
+     Optionally returns saved BPI completion
+    */
+    
     class func saveBPI(code code: String, rate: Float, date: NSDate, completion: ((bpi: BPI) -> ())?) {
         let moc = CoreDataHelper.managedObjectContext()
         
+        /** Predicate set to check for object with same date */
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         let predicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", date.beginningOfDay(), date.endOfDay()) // existing entity with date
         
         let bpiList = CoreDataHelper.fetchEntities("BPI", managedObjectContext: moc, predicate: predicate, sortDescriptor: sortDescriptor, fetchLimit: nil) as! [BPI]
         
+        /** 
+            If a BPI exists then update the rate for that date
+            Otherwise create a new BPI object
+        */
         if bpiList.count > 0 {
-            // If a bpi exists then update the rate for that date
+            
             let bpi = bpiList.first! as BPI
             bpi.code = code
             bpi.rate = rate
@@ -28,7 +39,6 @@ class BPIManager: NSObject {
             
             completion?(bpi: bpi)
         } else {
-            // If the bpi doesn't exist create the entity
             let bpi = CoreDataHelper.insertManagedObject("BPI", managedObjectContext: moc) as! BPI
             bpi.code = code
             bpi.rate = rate

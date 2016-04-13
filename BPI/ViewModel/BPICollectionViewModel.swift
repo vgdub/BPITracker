@@ -18,6 +18,7 @@ protocol BPICollectionViewViewModel {
 class BPICollectionViewModel: BPICollectionViewViewModel {
     var bpiHistory = [BPI]()
     
+    /** Get the number of BPI's in the collection */
     var bpiCount: Int {
         return bpiHistory.count
     }
@@ -30,19 +31,17 @@ class BPICollectionViewModel: BPICollectionViewViewModel {
         BPIDataAccessor().updateHistoricalData()
     }
     
+    /** Loads collection data from core data with fetchLimit of 28
+     
+     Sets bpiHistory array to retrieved data
+     
+    */
     func loadCollectionData() {
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
+        let collectionLength = 28
         
-        let fetchedEntities = CoreDataHelper.fetchEntities("BPI", managedObjectContext: moc, predicate: nil, sortDescriptor: sortDescriptor, fetchLimit: 28) as! [BPI]
+        let fetchedEntities = CoreDataHelper.fetchEntities("BPI", managedObjectContext: moc, predicate: nil, sortDescriptor: sortDescriptor, fetchLimit: collectionLength) as! [BPI]
         
-        self.bpiHistory = fetchedEntities.reverse() // reverse retrieved BPI's for graph
-        
-        print("======== BPI HISTORY ============")
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        for bpi in bpiHistory {
-            print("\(dateFormatter.stringFromDate(bpi.date)) : \(bpi.rate)")
-        }
-        print("======== BPI HISTORY END ============")
+        bpiHistory = fetchedEntities.reverse()
     }
 }

@@ -150,17 +150,17 @@
 			children = (
 				C34AC1071CBCF9B100019EBA /* AppDelegate.swift */,
 				C34AC1091CBCF9B100019EBA /* BPIViewController.swift */,
+				C34AC1441CBD40A900019EBA /* ViewModel */,
+				C34AC13C1CBCFE5A00019EBA /* Model */,
+				C34AC13F1CBD044500019EBA /* Helpers */,
 				C34AC10B1CBCF9B100019EBA /* Main.storyboard */,
 				C34AC1111CBCF9B100019EBA /* Assets.xcassets */,
 				C34AC1131CBCF9B100019EBA /* LaunchScreen.storyboard */,
 				C34AC1161CBCF9B100019EBA /* Info.plist */,
 				C34AC10E1CBCF9B100019EBA /* BPI.xcdatamodeld */,
 				C319BADF1CBE514C00F0EE8A /* BPI-Bridging-Header.h */,
-				C34AC13F1CBD044500019EBA /* Helpers */,
-				C34AC13C1CBCFE5A00019EBA /* Model */,
-				C34AC1441CBD40A900019EBA /* ViewModel */,
 				C319BACE1CBE4D5200F0EE8A /* BEMSimpleLineChart */,
-				C3554F191CBE876400BF196A /* NSDateExtension.swift */,
+				C3A147D81CBEA3E9009C6D53 /* Extensions */,
 			);
 			path = BPI;
 			sourceTree = "<group>";
@@ -209,6 +209,14 @@
 				C3554F171CBE7A6000BF196A /* BPICollectionViewModel.swift */,
 			);
 			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		C3A147D81CBEA3E9009C6D53 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C3554F191CBE876400BF196A /* NSDateExtension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

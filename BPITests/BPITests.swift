@@ -22,6 +22,4 @@ class BPITests: XCTestCase {
         super.tearDown()
     }
     
-    
-    
 }
