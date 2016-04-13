@@ -18,21 +18,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJA-Te-6Sz">
-                                <rect key="frame" x="20" y="141" width="560" height="21"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="€---.---" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJA-Te-6Sz">
+                                <rect key="frame" x="20" y="151" width="560" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="Izt-aa-zx7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="35"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vL7-jb-Cda" customClass="BEMSimpleLineGraphView">
+                                <rect key="frame" x="0.0" y="300" width="600" height="280"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Last Updated" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04j-ma-dHE">
+                                <rect key="frame" x="20" y="234" width="560" height="21"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitcoin Price Index" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyC-zw-XqD">
+                                <rect key="frame" x="20" y="30" width="560" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="Ifs-W1-MrW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PJA-Te-6Sz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="311-lo-85w"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="PJA-Te-6Sz" secondAttribute="leading" id="Lch-FU-YQh"/>
+                            <constraint firstItem="yyC-zw-XqD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0Ve-aq-RFk"/>
+                            <constraint firstItem="vL7-jb-Cda" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1Dx-hi-paD"/>
+                            <constraint firstItem="04j-ma-dHE" firstAttribute="top" secondItem="PJA-Te-6Sz" secondAttribute="bottom" constant="8" id="4xB-zG-kVL"/>
+                            <constraint firstItem="PJA-Te-6Sz" firstAttribute="top" secondItem="yyC-zw-XqD" secondAttribute="bottom" constant="66" id="AUw-tT-9di"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vL7-jb-Cda" secondAttribute="trailing" id="Bd3-DA-fcz"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="04j-ma-dHE" secondAttribute="leading" id="F0t-60-1u3"/>
+                            <constraint firstItem="yyC-zw-XqD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="G65-kP-Sve"/>
+                            <constraint firstItem="PJA-Te-6Sz" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="IzJ-Jj-koH"/>
+                            <constraint firstItem="04j-ma-dHE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="R8F-o6-4TU"/>
+                            <constraint firstItem="vL7-jb-Cda" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" constant="-20" id="a67-0r-MMZ"/>
+                            <constraint firstItem="vL7-jb-Cda" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="300" id="dIu-7C-Cuq"/>
+                            <constraint firstItem="PJA-Te-6Sz" firstAttribute="centerX" secondItem="vL7-jb-Cda" secondAttribute="centerX" id="dRd-nh-K7X"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vL7-jb-Cda" secondAttribute="bottom" constant="20" id="dSk-Pu-KW1"/>
+                            <constraint firstItem="yyC-zw-XqD" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="k12-gr-gcd"/>
+                            <constraint firstItem="vL7-jb-Cda" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oSl-TJ-JaG"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="vL7-jb-Cda" secondAttribute="leading" id="wgW-2M-hwa"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Bd3-DA-fcz"/>
+                                <exclude reference="wgW-2M-hwa"/>
+                                <exclude reference="dSk-Pu-KW1"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="bpiLineGraph" destination="vL7-jb-Cda" id="5Hy-ib-Dux"/>
                         <outlet property="currentBPILabel" destination="PJA-Te-6Sz" id="bl9-tQ-Jgl"/>
+                        <outlet property="lastUpdatedAtLabel" destination="04j-ma-dHE" id="jVX-ca-J56"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

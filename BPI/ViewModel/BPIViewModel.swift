@@ -17,7 +17,6 @@ protocol CurrentBPIViewViewModel {
 
 class CurrentBPIViewModel: CurrentBPIViewViewModel {
     
-    var bpi: BPI
     var bpiRate: String
     var bpiCode: String?
     var bpiDate: String?
@@ -25,17 +24,25 @@ class CurrentBPIViewModel: CurrentBPIViewViewModel {
     
     init() {
         moc = CoreDataHelper.managedObjectContext()
+        
+        self.bpiCode = "EUR"
+        self.bpiRate = "€---.---"
+        self.bpiDate = formattedDate(NSDate())
+        
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         let bpiList = CoreDataHelper.fetchEntities("BPI", managedObjectContext: moc, predicate: nil, sortDescriptor: sortDescriptor, fetchLimit: 1) as! [BPI]
-        self.bpi = bpiList.first!
-        self.bpiCode = "EUR"
-        self.bpiRate = "---"
-        self.bpiDate = formattedDate(NSDate())
+        
+        if bpiList.count > 0 {
+            let bpi = bpiList.first!
+            self.bpiCode = bpi.code
+            self.bpiRate = "€\(bpi.rate)"
+            self.bpiDate = formattedDate(bpi.date)
+        }
+        
+        BPIDataAccessor().beginUpdateCurrentData()
     }
     
     init(_ bpi: BPI) {
-        
-        self.bpi = bpi
         
         self.bpiCode = bpi.code
         self.bpiRate = "€\(bpi.rate)"
@@ -46,7 +53,7 @@ class CurrentBPIViewModel: CurrentBPIViewViewModel {
     func formattedDate(date:NSDate) -> String {
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "dd-MM-yy hh:mm:ss"
         
         return dateFormatter.stringFromDate(date)
     }

@@ -9,35 +9,37 @@
 import UIKit
 import CoreData
 
-class BPIViewController: UIViewController {
+class BPIViewController: UIViewController, BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate {
     
     @IBOutlet weak var currentBPILabel: UILabel!
-    
-    var moc:NSManagedObjectContext!
-    var bpiDataAccessor:BPIDataAccessor!
-    
-    var bpiHistory = [BPI]()
+    @IBOutlet weak var lastUpdatedAtLabel: UILabel!
+    @IBOutlet weak var bpiLineGraph: BEMSimpleLineGraphView!
 
     var currentBPIViewModel:CurrentBPIViewModel? {
         didSet {
             currentBPILabel.text = currentBPIViewModel!.bpiRate
+            lastUpdatedAtLabel.text = currentBPIViewModel!.bpiDate
         }
     }
     
-    var historicalBPIViewModel:CurrentBPIViewModel? {
-        didSet {
-            // set data to graph
-        }
-    }
+    var bpiCollectionViewModel:BPICollectionViewViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        moc = CoreDataHelper.managedObjectContext()
-        bpiDataAccessor = BPIDataAccessor()
+        currentBPIViewModel = CurrentBPIViewModel()
+        bpiCollectionViewModel = BPICollectionViewModel()
+        bpiCollectionViewModel!.loadCollectionData() // load initial historical data
         
-//        loadCurrentBPIData()
-        loadHistoricalData()
+        bpiLineGraph.delegate = self
+        bpiLineGraph.dataSource = self
+        bpiLineGraph.enablePopUpReport = true
+        bpiLineGraph.enableTouchReport = true
+        bpiLineGraph.autoScaleYAxis = true
+        bpiLineGraph.colorXaxisLabel = UIColor.whiteColor()
+        bpiLineGraph.colorYaxisLabel = UIColor.whiteColor()
+        bpiLineGraph.formatStringForValues = "%.3f"
+        bpiLineGraph.animationGraphEntranceTime = 0
         
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onCurrentBPIUpdateNotification:",
@@ -46,66 +48,64 @@ class BPIViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onHistoricalBPIUpdateNotification:",
             name: HistoricalBPIUpdateNotification,
             object: nil)
-        
-        
-        bpiDataAccessor.beginUpdateCurrentData()
-        bpiDataAccessor.updateHistoricalData()
+
         
     }
-    
-    
-    func loadCurrentBPIData() {
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
-        
-        
-        bpiHistory = CoreDataHelper.fetchEntities("BPI", managedObjectContext: moc, predicate: nil, sortDescriptor: sortDescriptor, fetchLimit: 1) as! [BPI]
-        
-        for bpi in bpiHistory {
-            print("Most Recent BPI: \(bpi.date) : \(bpi.rate)")
-        }
-        
-        self.currentBPIViewModel = CurrentBPIViewModel(bpiHistory.first!)
-    }
-    
-    func loadHistoricalData() {
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
-        
-        bpiHistory = CoreDataHelper.fetchEntities("BPI", managedObjectContext: moc, predicate: nil, sortDescriptor: sortDescriptor, fetchLimit: 28) as! [BPI]
-        
-//        var chartSeries:Array<Float> = []
-        print("======== BPI HISTORY ============")
-        for bpi in bpiHistory {
-            print("\(bpi.date) : \(bpi.rate)")
-//            chartSeries.append(Float(bpi.rate))
-        }
-        print("======== BPI HISTORY END ============")
-//        
-//        let series = ChartSeries(chartSeries)
-//        bpiChart.addSeries(series)
-    }
-    
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // MARK: BEMSimpleLineGraph Delegate / Data Source Methods
+    func numberOfPointsInLineGraph(graph: BEMSimpleLineGraphView) -> Int {
+        return (bpiCollectionViewModel?.bpiCount)!
+    }
+    
+    func lineGraph(graph: BEMSimpleLineGraphView, valueForPointAtIndex index: Int) -> CGFloat {
+        let bpi = bpiCollectionViewModel?.bpiHistory[index]
+        return CGFloat(bpi!.rate)
+    }
+    
+    func lineGraph(graph: BEMSimpleLineGraphView, labelOnXAxisForIndex index: Int) -> String {
+        let bpi = bpiCollectionViewModel?.bpiHistory[index]
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd"
+        let date = dateFormatter.stringFromDate(bpi!.date)
+        return date
+    }
+    
+    func lineGraph(graph: BEMSimpleLineGraphView, alwaysDisplayPopUpAtIndex index: CGFloat) -> Bool {
+        return true
+    }
+    
+    func popUpPrefixForlineGraph(graph: BEMSimpleLineGraphView) -> String {
+        return "€"
+    }
+    
+    func numberOfGapsBetweenLabelsOnLineGraph(graph: BEMSimpleLineGraphView) -> Int {
+        return 6
+    }
+    
+    func numberOfYAxisLabelsOnLineGraph(graph: BEMSimpleLineGraphView) -> Int {
+        return 2
     }
     
     // MARK: Notification Handler
     func onCurrentBPIUpdateNotification(notification: NSNotification) {
         if let updatedBPI = notification.object as? BPI {
             currentBPIViewModel = CurrentBPIViewModel(updatedBPI)
-            
         }
     }
     
     func onHistoricalBPIUpdateNotification(notification: NSNotification) {
-        loadHistoricalData()
+        bpiCollectionViewModel.loadCollectionData()
+        self.bpiLineGraph.reloadGraph()
     }
-
-
 }
 

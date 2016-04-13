@@ -18,25 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-//        addTestData()
-//        
-//        let fetchRequest = NSFetchRequest(entityName: "BPI")
-//        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
-//        fetchRequest.sortDescriptors = [sortDescriptor]
-//        
-//        do {
-//            if let results = try managedObjectContext.executeFetchRequest(fetchRequest) as? [NSManagedObject] {
-//                
-//                for result in results {
-//                    if let rate = result.valueForKey("rate") as? Float {
-//                        print(rate)
-//                    }
-//                }
-//            }
-//        } catch {
-//            print("Fetch Error")
-//        }
-        
         return true
     }
     

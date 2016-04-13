@@ -23,10 +23,11 @@ class BPIDataAccessor : NSObject {
     }
     
     func beginUpdateCurrentData() {
+        // Set update frequency to 5s
         NSTimer.scheduledTimerWithTimeInterval(5.0, target: self,
             selector: "updateCurrentData", userInfo: nil, repeats: true)
         
-        // just so it happens quickly the first time
+        // Update current BPI immediately
         updateCurrentData()
     }
     
@@ -38,26 +39,21 @@ class BPIDataAccessor : NSObject {
         
         session.dataTaskWithURL(url) { data, response, error in
             if error != nil {
-                print(error)
+                let nsError = error! as NSError
+                print(nsError.localizedDescription)
                 return
             }
             
             do {
                 json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? [String : AnyObject]
                 
-                guard let currentBPI = json["bpi"] as? Payload else {
-                    print("not working")
-                    return
-                }
-                
-                guard let euroBPI = currentBPI["EUR"] as? Payload else {
-                    print("not working out of current bpi")
-                    return
-                }
+                guard let currentBPI = json["bpi"] as? Payload else {return }
+                guard let euroBPI = currentBPI["EUR"] as? Payload else { return }
                 
                 dispatch_async(dispatch_get_main_queue()) { self.saveCurrentBPI(euroBPI) }
             } catch {
-                print(error)
+                let nsError = error as NSError
+                print(nsError.localizedDescription)
             }
             
             }.resume()
@@ -71,7 +67,7 @@ class BPIDataAccessor : NSObject {
         let rateString = String(currentBPI["rate_float"]!)
         let rate = Float(rateString)!
         
-        BPIManager.addBPI("EUR", rate: rate, date: date) { (bpi) -> () in
+        BPIManager.saveBPI(code: "EUR", rate: rate, date: date) { (bpi) -> () in
             print("Latest BPI: \(bpi.date) - \(bpi.rate)")
             let currentBPIUpdateNotification = NSNotification(name: CurrentBPIUpdateNotification, object: bpi)
             NSNotificationCenter.defaultCenter().postNotification(currentBPIUpdateNotification)
@@ -88,20 +84,20 @@ class BPIDataAccessor : NSObject {
         
         session.dataTaskWithURL(url) { data, response, error in
             if error != nil {
+                let nsError = error! as NSError
+                print(nsError.localizedDescription)
                 return
             }
             
             do {
                 json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? Payload
                 
-                guard let bpiHistory = json["bpi"] as? Payload else {
-                    print("no bpi data")
-                    return
-                }
+                guard let bpiHistory = json["bpi"] as? Payload else { return }
                 
                 dispatch_async(dispatch_get_main_queue()) { self.saveHistoricalBPI(bpiHistory) }
             } catch {
-                print(error)
+                let nsError = error as NSError
+                print(nsError.localizedDescription)
             }
             
             }.resume()
@@ -120,8 +116,7 @@ class BPIDataAccessor : NSObject {
             
             let date = dateFormatter.dateFromString(dateString)
             
-            BPIManager.addBPI("EUR", rate: rateFloat, date: date!, completion: nil)
-            
+            BPIManager.saveBPI(code: "EUR", rate: rateFloat, date: date!, completion: nil)
             
         }
         
